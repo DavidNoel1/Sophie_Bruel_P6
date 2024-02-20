@@ -186,3 +186,50 @@ footer nav ul {
 	margin: 2em
 }
 
+a {
+    text-decoration: none; 
+    color: inherit; 
+    cursor: pointer; 
+}
+
+.categories-menu {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	justify-content: center;
+	margin-bottom: 29px;
+}
+
+.filterButton {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 25px;
+    padding: 9px 30px 9px 28px;
+    height: 37px;
+    color: #1D6154;
+	background-color: white;
+	font-family: Syne;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+	border: #1D6154 1px solid;
+}
+
+.filterButtonActive {
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 25px;
+    padding: 9px 30px 9px 28px;
+    height: 37px;
+    color: white;
+	background-color: #1D6154;
+	font-family: Syne;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
