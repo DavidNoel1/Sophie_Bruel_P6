@@ -233,3 +233,81 @@ a {
     line-height: normal;
 }
 
+/*Partie login*/
+.login {
+	display: flex;
+    justify-content: center;
+	margin-top:242px;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login h1 {
+	color: #1D6154;
+	text-align: center;
+    font-family: Syne;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.login-bar {
+	display: flex;
+	flex-direction: column;
+}
+
+.login-bar-input {
+	width: 379px;
+    height: 51px;
+   flex-shrink: 0;
+   background: #FFF;
+   box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+   border: transparent;
+}
+
+.login-bar-email {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+}
+
+.login-bar-mot-de-passe {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 37px;
+}
+
+.login-label {
+   color: #3D3D3D;
+   font-family: "Work Sans";
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+   margin-bottom: 7px;
+}
+
+.login-button {
+	height: 36px;
+	border: transparent;
+}
+
+.oublie {
+	color: #3D3D3D;
+	font-family: "Work Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+	margin-bottom: 500px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
