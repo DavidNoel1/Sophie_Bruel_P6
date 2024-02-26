@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fetchCategoriesAndPopulateMenu();
         fetchAndDisplayWorks();
-        toggleActiveButton();
+
 
     }
     main();
@@ -20,36 +20,32 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('http://localhost:5678/api/categories')
             .then(response => response.json())
             .then(categories => {
-                filters.innerHTML = '';
-    
-                const allOption = document.createElement('button');
-                allOption.textContent = 'Tous';
-                allOption.classList.add("filterButton");
-                allOption.setAttribute("buttonId", ""); 
-                allOption.addEventListener('click', function() {
-                    fetchAndDisplayWorks();
-                    toggleActiveButton(allOption);
-                });
-                filters.appendChild(allOption);
+                
 
                 categories.forEach(category => {
-                    const option = document.createElement('button');
-                    option.textContent = category.name;
-                    option.setAttribute("buttonId", category.id);
-                    option.classList.add("filterButton");
-                    option.addEventListener('click', function () {
-                        let categoryId = option.getAttribute("buttonId");
+                    const buttonFilter = document.createElement('button');
+                    buttonFilter.textContent = category.name;
+                    buttonFilter.setAttribute("buttonId", category.id);
+                    buttonFilter.classList.add("filterButton");
+                    filters.appendChild(buttonFilter);
+                });
+
+                // Ajout d'un event au clic sur chaque bouton
+                const buttonFilters = document.querySelectorAll(".categories-menu button");
+                buttonFilters.forEach((buttonFilter) => {
+                    buttonFilter.addEventListener("click", function () {
+                        let categoryId = buttonFilter.getAttribute("buttonId");
                         filterWorksByCategory(categoryId);
-                        toggleActiveButton(option);
+                        toggleActiveButton(buttonFilter);
+
                     });
-                    filters.appendChild(option);
                 });
             })
             .catch(error => {
                 console.error('Error fetching categories:', error);
             });
     }
-    
+
     function toggleActiveButton(clickedButton) {
         const buttons = document.querySelectorAll(".categories-menu button");
         buttons.forEach(button => {
@@ -74,6 +70,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+
+
+
     function fetchAndDisplayWorks() {
         fetch('http://localhost:5678/api/works')
             .then(response => response.json())
@@ -85,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+
     function displayWorks(works, categoryId) {
         gallery.innerHTML = '';
-
 
 
         works.forEach(work => {
@@ -116,4 +115,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
-
