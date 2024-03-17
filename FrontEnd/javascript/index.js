@@ -5,10 +5,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const loginLink = document.querySelector('nav ul li.login-title a');
 
     const modal = document.getElementById('modal');
-    const openModalButton = document.getElementById('open-modal-button');
+   
     const closeModalButton = document.querySelector('.close');
 
+    let  openModalButton ;
 
+    const MiniGallery = document.querySelector ('.mini-gallery');
+
+    const modalContentGallery = document.querySelector('.modal-content-gallery');
+
+    const modalContentFormAddWork = document.querySelector('.modal-content-formAddWork');
+    
+    const arrowSpan = document.createElement('span');
+    arrowSpan.className = "fa-solid fa-arrow-left fa-lg";
+
+    modalContentFormAddWork.prepend(arrowSpan);
+
+    // Ajouter un gestionnaire d'événements à la flèche
+    arrowSpan.addEventListener('click', function() {
+        modalContentGallery.style.display = 'block';
+        modalContentFormAddWork.style.display = 'none';
+    });
 
 
 
@@ -21,11 +38,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     main();
 
+    
     function modeAdmin() {
         const token = sessionStorage.getItem("token"); // Vérifier si un token est stocké en session
         if (token) {
            
+
             logout();
+            adminDisplay()
             gestionModale();
 
         } 
@@ -40,6 +60,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
         });
     }
+
+    function adminDisplay() {
+        // Création de la bannière noire
+        const banner = document.getElementById('bannerEdit')
+    
+        banner.classList.add("blackBanner")
+        banner.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>' + "Mode édition";
+    
+        // On masque les filtres
+        const filters = document.querySelector(".categories-menu");
+        filters.style.display = "none";
+    
+        // Modification de la margin sous le h2 'Mes Projets' 
+        const portfolioTitle = document.querySelector(".project");
+        portfolioTitle.style.marginBottom = "90px";
+    
+        // Ajout du bouton modifier
+        const boutonEdit = document.createElement("a");
+        boutonEdit.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>' + "modifier";
+        boutonEdit.href = "#modal1";
+       
+        boutonEdit.setAttribute("id","open-modal-button");
+        portfolioTitle.appendChild(boutonEdit)
+
+        openModalButton = document.getElementById('open-modal-button');
+        
+
+        console.log("affichage openmodlae dans admindisplay")
+        console.log(openModalButton)
+    }
+
 
     function fetchCategoriesAndPopulateMenu() {
         fetch('http://localhost:5678/api/categories')
@@ -143,7 +194,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function openModal() {
-        modal.style.display = 'flex';
+        modal.style.display = 'block';
+    modalContentGallery.style.display = 'block';
+    modalContentFormAddWork.style.display = 'none';
     }
 
     // Fonction pour fermer la modale
@@ -152,6 +205,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function gestionModale() {
+
+        console.log("affichage openmodlae dans gestionModale")
+        console.log(openModalButton)
 
         // Événement pour ouvrir la modale lors du clic sur le bouton
         openModalButton.addEventListener('click', openModal);
@@ -167,7 +223,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
     }
+    const buttonModal = document.querySelector('.button-modal');
 
+    buttonModal.addEventListener('click', function() {
+        modalContentGallery.style.display = 'none';
+        modalContentFormAddWork.style.display = 'block';
+    });
 
 
 

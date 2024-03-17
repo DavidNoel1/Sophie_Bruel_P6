@@ -45,10 +45,10 @@ document.querySelector('.login-bar').addEventListener('submit', async function (
             sessionStorage.setItem("token", data.token);  // Enregistrement du token pour cette session
             window.location.href = "index.html"; // Redirection vers la page d'accueil
         } else if (response.status === 401) { // Erreur mauvais mot de passe
-            loginError.textContent = 'Mot de passe incorrect';
+            loginError.textContent = 'Mot de passe ou adresse email incorrect';
             loginError.style.display = 'block';
         } else if (response.status === 404) { // Erreur mauvais utilisateur
-            loginError.textContent = 'Utilisateur non trouvé';
+            loginError.textContent = 'Mot de passe ou adresse email incorrect';
             loginError.style.display = 'block';
         } else { // Erreur inattendue
             loginError.textContent = 'Une erreur inattendue s\'est produite, veuillez réessayer plus tard';
